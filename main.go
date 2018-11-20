@@ -75,6 +75,7 @@ func main() {
 		Hime: appHime,
 	}
 	appHime.Template().
+		Funcs(appFactory.TemplateFuncs()).
 		ParseConfigFile("settings/web/template.yaml")
 	appHime.
 		ParseConfigFile("settings/web/routes.yaml").
