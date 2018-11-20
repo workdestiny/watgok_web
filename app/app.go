@@ -65,6 +65,7 @@ func (app *App) Handler() http.Handler {
 	m.NotFound = hime.Handler(notFoundHandler)
 
 	m.Get(app.Hime.Route("signin"), hime.Handler(signinGetHandle))
+	m.Get(app.Hime.Route("postread"), hime.Handler(postReadGetHandler))
 
 	// add m to mux
 	mux.Handle("/", m)

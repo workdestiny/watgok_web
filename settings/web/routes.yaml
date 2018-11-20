@@ -1,3 +1,7 @@
 routes:
+
+  index: /
+  notfound: /404
   # signin
   signin: /signin
+  postread: /postread

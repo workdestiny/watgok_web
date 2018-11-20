@@ -1,0 +1,14 @@
+dir: template
+root: root
+minify: true
+
+preload:
+  - main.tmpl
+  - _components/navbar.tmpl
+list:
+  app/signin:
+    - app/signin.tmpl
+  app/post.read:
+    - app/post-read.tmpl
+  notfound:
+    - error.tmpl

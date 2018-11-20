@@ -8,7 +8,7 @@ import (
 
 func signinGetHandle(ctx *hime.Context) error {
 
-	log.Println("Test /signin OK")
+	log.Println("aloha!!!")
 
-	return nil
+	return ctx.View("app/signin", page(ctx))
 }
