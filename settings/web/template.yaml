@@ -6,6 +6,8 @@ preload:
   - main.tmpl
   - _components/navbar.tmpl
 list:
+  index :
+    - app/index.tmpl
   app/signin:
     - app/signin.tmpl
   app/post.read:
