@@ -4,4 +4,5 @@ routes:
   notfound: /404
   # signin
   signin: /signin
+  signin.fb.callback: /signin/fb/callback
   postread: /postread

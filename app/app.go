@@ -30,6 +30,7 @@ type App struct {
 	Hime          *hime.App
 	Location      *time.Location
 	Static        map[string]string
+	FacebookToken string
 }
 
 // Config is the csrf config
@@ -47,6 +48,7 @@ var (
 	redisPrefix string
 	loc         *time.Location
 	csef        csrf.Config
+	fbToken     string
 )
 
 //Handler return Handler Muti Middleware
@@ -68,6 +70,7 @@ func (app *App) Handler() http.Handler {
 	m.NotFound = hime.Handler(notFoundHandler)
 
 	m.Get(app.Hime.Route("signin"), hime.Handler(signInFacebookGetHandler))
+	m.Get(app.Hime.Route("signin.fb.callback"), hime.Handler(signInFacebookCallbackGetHandler))
 	m.Get(app.Hime.Route("postread"), hime.Handler(postReadGetHandler))
 
 	// add m to mux
@@ -92,6 +95,7 @@ func initConfig(c *App) {
 	db = c.SQL
 	loc = c.Location
 	csef = c.CSRFConfig
+	fbToken = c.FacebookToken
 }
 
 func healthzDatabaseHandler(w http.ResponseWriter, r *http.Request) {
