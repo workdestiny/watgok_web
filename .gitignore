@@ -11,3 +11,4 @@ public/mix-manifest.json
 public/css/*.css
 public/js/*.js
 public/ckeditor5
+vendor
