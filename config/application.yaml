@@ -1,4 +1,5 @@
 domain: "localhost:8080"
+base_url: "localhost:8080"
 db: "postgres://masterdev:111222333444555@127.0.0.1/mydb?sslmode=require"
 session_host: "localhost:6379"
 session_prefix: "sess_master:"

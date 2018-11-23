@@ -22,6 +22,7 @@ import (
 type App struct {
 	SessionConfig session.Config
 	Domain        string
+	BaseURL       string
 	SQL           *sql.DB
 	Redis         *redis.Client
 	RedisPrefix   string
@@ -40,6 +41,7 @@ type Config struct {
 
 var (
 	domain      string
+	baseURL     string
 	db          *sql.DB
 	myRedis     *redis.Client
 	redisPrefix string
@@ -65,7 +67,7 @@ func (app *App) Handler() http.Handler {
 	m.HandleMethodNotAllowed = false
 	m.NotFound = hime.Handler(notFoundHandler)
 
-	m.Get(app.Hime.Route("signin"), hime.Handler(signinGetHandle))
+	m.Get(app.Hime.Route("signin"), hime.Handler(signInFacebookGetHandler))
 	m.Get(app.Hime.Route("postread"), hime.Handler(postReadGetHandler))
 
 	// add m to mux
@@ -84,6 +86,7 @@ func (app *App) Handler() http.Handler {
 
 func initConfig(c *App) {
 	domain = c.Domain
+	baseURL = c.BaseURL
 	myRedis = c.Redis
 	redisPrefix = c.RedisPrefix
 	db = c.SQL

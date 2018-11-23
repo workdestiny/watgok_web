@@ -49,6 +49,7 @@ func main() {
 	appFactory := &app.App{
 		Location:    loc,
 		Domain:      configValue.String("domain"),
+		BaseURL:     configValue.String("base_url"),
 		SQL:         db,
 		Redis:       redisClient,
 		RedisPrefix: redisPrefix,

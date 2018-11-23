@@ -1,0 +1,5 @@
+GO=go
+COMMIT_SHA=$(shell git rev-parse HEAD)
+
+dev:
+	goreload -x vendor -x src --all
