@@ -75,9 +75,11 @@ func main() {
 			},
 			IgnoreProto: true,
 		},
-		Hime:   appHime,
-		Static: static("public/mix-manifest.json"),
+		Hime:          appHime,
+		Static:        static("public/mix-manifest.json"),
+		FacebookToken: configValue.String("fb_token"),
 	}
+
 	appHime.Template().
 		Funcs(appFactory.TemplateFuncs()).
 		ParseConfigFile("settings/web/template.yaml")
