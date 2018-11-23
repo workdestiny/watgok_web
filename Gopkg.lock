@@ -40,14 +40,6 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:d32cfd477958b2fc10fcaa8fba145378492f7a12538783d85a77029a9eb193b7"
-  name = "github.com/acoshift/ds"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "8083dd11f6b33b2f000ff5c81a0eaf4412995326"
-
-[[projects]]
-  branch = "master"
   digest = "1:838870a7735941eb9d0809567c012f71c6257e1bd7c0e1d291cd664be316a2d9"
   name = "github.com/acoshift/header"
   packages = ["."]
@@ -85,14 +77,6 @@
   pruneopts = "UT"
   revision = "3c215684dd1f8d6141f2b04ac71b1a080dc27c60"
   version = "v2.1.1"
-
-[[projects]]
-  branch = "master"
-  digest = "1:48aa158dbd3b913ac145222977a5c327bda1c1068ec566f8464220996c0b99d6"
-  name = "github.com/anthoz69/swapgap-web"
-  packages = ["entity"]
-  pruneopts = "UT"
-  revision = "3a8e210aeff92beca46dbc61da246c87e9663e92"
 
 [[projects]]
   digest = "1:34a9a60fade37f8009ed4a19e02924198aba3eabfcc120ee5c6002b7de17212d"
@@ -137,6 +121,14 @@
   version = "v1.0.7"
 
 [[projects]]
+  digest = "1:236d7e1bdb50d8f68559af37dbcf9d142d56b431c9b2176d41e2a009b664cda8"
+  name = "github.com/google/uuid"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "9b3b1e0f5f99ae461456d768e7d301a7acdaa2d8"
+  version = "v1.1.0"
+
+[[projects]]
   digest = "1:e04cc716992a302cacf6d726409a05aa9546241998b24356d6dd0f01bc5a374e"
   name = "github.com/googleapis/gax-go"
   packages = ["."]
@@ -151,14 +143,6 @@
   pruneopts = "UT"
   revision = "ffa96de2479e10ecd06aca8069bf9c55a86701b5"
   version = "v1.4.0"
-
-[[projects]]
-  branch = "master"
-  digest = "1:e9773c29ff03ccd74d62d120c9393f79a1bb741e70cc74c7360b0a6fd3bb72a5"
-  name = "github.com/lenscorpdev/swapgap-web"
-  packages = ["config"]
-  pruneopts = "UT"
-  revision = "3a8e210aeff92beca46dbc61da246c87e9663e92"
 
 [[projects]]
   digest = "1:8ef506fc2bb9ced9b151dafa592d4046063d744c646c1bbe801982ce87e4bc24"
@@ -191,12 +175,12 @@
   version = "v0.13.0"
 
 [[projects]]
-  digest = "1:81e02c4edb639c80559c0650f9401d3e2dcc3256d1fa215382bb7c83c1db9126"
-  name = "github.com/shopspring/decimal"
+  branch = "master"
+  digest = "1:34534b73e925d20cc72cf202f8b482fdcbe3a1b113e19375f31aadabd0f0f97d"
+  name = "github.com/nfnt/resize"
   packages = ["."]
   pruneopts = "UT"
-  revision = "cd690d0c9e2447b1ef2a129a6b7b49077da89b8e"
-  version = "1.1.0"
+  revision = "83c6a9932646f83e3267f353373d47347b6036b2"
 
 [[projects]]
   digest = "1:103026dacef776cc9573b869de63f3c71d00055d2a8958838be1a5a0caf822a6"
@@ -434,12 +418,13 @@
     "github.com/acoshift/middleware",
     "github.com/acoshift/probehandler",
     "github.com/acoshift/webstatic",
-    "github.com/anthoz69/swapgap-web/entity",
     "github.com/go-redis/redis",
+    "github.com/google/uuid",
     "github.com/lib/pq",
     "github.com/moonrhythm/hime",
     "github.com/moonrhythm/session",
     "github.com/moonrhythm/session/store/goredis",
+    "github.com/nfnt/resize",
     "golang.org/x/oauth2",
     "golang.org/x/oauth2/facebook",
     "golang.org/x/oauth2/google",

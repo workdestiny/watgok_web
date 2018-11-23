@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/anthoz69/swapgap-web/entity"
 	"github.com/moonrhythm/hime"
 	"github.com/workdestiny/watgok_web/config"
+	"github.com/workdestiny/watgok_web/entity"
 	"github.com/workdestiny/watgok_web/service"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/facebook"

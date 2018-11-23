@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/acoshift/configfile"
-	"github.com/anthoz69/swapgap-web/entity"
+	"github.com/workdestiny/watgok_web/entity"
 )
 
 //SendErrorToDiscord send err
