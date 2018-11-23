@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"database/sql"
 	"encoding/json"
 	"io/ioutil"
@@ -8,6 +9,8 @@ import (
 	"net/http"
 	"time"
 
+	"cloud.google.com/go/datastore"
+	"cloud.google.com/go/storage"
 	"github.com/acoshift/configfile"
 	"github.com/acoshift/csrf"
 	"github.com/acoshift/probehandler"
@@ -17,6 +20,8 @@ import (
 	"github.com/moonrhythm/session"
 	redisstore "github.com/moonrhythm/session/store/goredis"
 	"github.com/workdestiny/watgok_web/app"
+	"golang.org/x/oauth2/google"
+	"google.golang.org/api/option"
 )
 
 func main() {
@@ -24,6 +29,20 @@ func main() {
 	configValue := configfile.NewYAMLReader("config/application.yaml")
 
 	loc, _ := time.LoadLocation("Asia/Bangkok")
+
+	googleConfig, err := google.JWTConfigFromJSON(configfile.NewReader("config/secret").Bytes("production_key.json"), datastore.ScopeDatastore, storage.ScopeReadWrite)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	ctx := context.Background()
+	tokenSource := googleConfig.TokenSource(ctx)
+	storageClient, err := storage.NewClient(ctx, option.WithTokenSource(tokenSource))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	bucket := storageClient.Bucket(configValue.String("bucket_name"))
 
 	sessionHost := configValue.String("session_host")
 	redisPrefix := configValue.String("session_prefix")
@@ -78,6 +97,10 @@ func main() {
 		Hime:          appHime,
 		Static:        static("public/mix-manifest.json"),
 		FacebookToken: configValue.String("fb_token"),
+		Bucket: app.Bucket{
+			Storage: bucket,
+			Name:    configValue.String("bucket_name"),
+		},
 	}
 
 	appHime.Template().

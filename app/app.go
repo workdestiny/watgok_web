@@ -8,6 +8,7 @@ import (
 	"runtime/debug"
 	"time"
 
+	"cloud.google.com/go/storage"
 	"github.com/acoshift/csrf"
 	"github.com/acoshift/httprouter"
 	"github.com/acoshift/middleware"
@@ -31,6 +32,7 @@ type App struct {
 	Location      *time.Location
 	Static        map[string]string
 	FacebookToken string
+	Bucket        Bucket
 }
 
 // Config is the csrf config
@@ -49,7 +51,14 @@ var (
 	loc         *time.Location
 	csef        csrf.Config
 	fbToken     string
+	bucket      Bucket
 )
+
+// Bucket is GCloud Storage and Name Storage
+type Bucket struct {
+	Storage *storage.BucketHandle
+	Name    string
+}
 
 //Handler return Handler Muti Middleware
 func (app *App) Handler() http.Handler {
@@ -97,6 +106,7 @@ func initConfig(c *App) {
 	loc = c.Location
 	csef = c.CSRFConfig
 	fbToken = c.FacebookToken
+	bucket = c.Bucket
 }
 
 func healthzDatabaseHandler(w http.ResponseWriter, r *http.Request) {
