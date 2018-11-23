@@ -2,12 +2,14 @@ package app
 
 import (
 	"encoding/json"
+	"image"
 	"log"
 	"net/http"
 
 	"github.com/anthoz69/swapgap-web/entity"
 	"github.com/moonrhythm/hime"
 	"github.com/workdestiny/watgok_web/config"
+	"github.com/workdestiny/watgok_web/service"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/facebook"
 )
@@ -55,6 +57,17 @@ func signInFacebookCallbackGetHandler(ctx *hime.Context) error {
 	if err != nil {
 		return err
 	}
+
+	resp, err = http.Get(facebookData.Picture.Data.URL)
+	if err != nil {
+		return ctx.RedirectTo("signin")
+	}
+	defer resp.Body.Close()
+	image, _, err := image.Decode(resp.Body)
+
+	displayImage := service.ResizeDisplay(image)
+	path := service.GenerateDisplayName(facebookData.ID)
+	upload(ctx, displayImage, path)
 
 	return nil
 }
