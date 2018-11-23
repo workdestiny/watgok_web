@@ -5,6 +5,7 @@ minify: true
 preload:
   - main.tmpl
   - _components/navbar.tmpl
+  - app/global.script.tmpl
 list:
   index :
     - app/index.tmpl
