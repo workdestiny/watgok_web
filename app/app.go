@@ -28,6 +28,7 @@ type App struct {
 	CSRFConfig    csrf.Config
 	Hime          *hime.App
 	Location      *time.Location
+	Static        map[string]string
 }
 
 // Config is the csrf config

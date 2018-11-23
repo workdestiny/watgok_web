@@ -2,6 +2,8 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -72,7 +74,8 @@ func main() {
 			},
 			IgnoreProto: true,
 		},
-		Hime: appHime,
+		Hime:   appHime,
+		Static: static("public/mix-manifest.json"),
 	}
 	appHime.Template().
 		Funcs(appFactory.TemplateFuncs()).
@@ -98,4 +101,11 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func static(filename string) map[string]string {
+	s := make(map[string]string)
+	bs, _ := ioutil.ReadFile(filename)
+	json.Unmarshal(bs, &s)
+	return s
 }
