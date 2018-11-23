@@ -1,10 +1,15 @@
 package app
 
 import (
+	"encoding/json"
 	"log"
+	"net/http"
 
+	"github.com/anthoz69/swapgap-web/entity"
 	"github.com/moonrhythm/hime"
 	"github.com/workdestiny/watgok_web/config"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/facebook"
 )
 
 func signinGetHandle(ctx *hime.Context) error {
@@ -16,5 +21,40 @@ func signinGetHandle(ctx *hime.Context) error {
 
 func signInFacebookGetHandler(ctx *hime.Context) error {
 	return ctx.Redirect("https://www.facebook.com/v2.9/dialog/oauth",
-		ctx.Param("client_id", config.FacebookAppID), ctx.Param("redirect_uri", baseURL+config.FacebookCallbackURL))
+		ctx.Param("client_id", config.FacebookAppID),
+		ctx.Param("redirect_uri", baseURL+config.FacebookCallbackURL))
+}
+
+func signInFacebookCallbackGetHandler(ctx *hime.Context) error {
+
+	facebookOauth2 := oauth2.Config{
+		ClientID:     config.FacebookAppID,
+		ClientSecret: fbToken,
+		RedirectURL:  baseURL + config.FacebookCallbackURL,
+		Scopes:       []string{"public_profile", "email"},
+		Endpoint:     facebook.Endpoint,
+	}
+
+	code := ctx.Request.URL.Query().Get("code")
+
+	//https: //graph.facebook.com/v2.9/oauth/access_token?client_id=appid&redirect_uri=link&client_secret&code=code
+	tokenFacebook, err := facebookOauth2.Exchange(ctx, code)
+	if err != nil {
+		return err
+	}
+
+	//https: //graph.facebook.com/v2.9/me?fields=id,name,email,picture.type(large)&access_token=
+	resp, err := http.Get("https://graph.facebook.com/v2.9/me?fields=id,name,email,picture.type(large)&access_token=" + tokenFacebook.AccessToken)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	var facebookData entity.FacebookOauth2
+	err = json.NewDecoder(resp.Body).Decode(&facebookData)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
