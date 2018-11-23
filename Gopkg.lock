@@ -2,15 +2,18 @@
 
 
 [[projects]]
-  digest = "1:4a927198ed19ecdb7aeeff36a637637ff24e1f14c16fcf0b6a0ccf7bd84607e2"
+  digest = "1:ba5a5e42349c0bac9928dd22aba0626cb6d63c0f9c15a067556ed4e93c7fd4ad"
   name = "cloud.google.com/go"
   packages = [
     "compute/metadata",
     "datastore",
+    "iam",
     "internal",
     "internal/fields",
+    "internal/optional",
     "internal/trace",
     "internal/version",
+    "storage",
   ]
   pruneopts = "UT"
   revision = "74b12019e2aa53ec27882158f59192d7cd6d1998"
@@ -224,7 +227,7 @@
   version = "v2.3.4"
 
 [[projects]]
-  digest = "1:7139f29149d65f1abcfd127d161aff4de84dcf1c251b3bdc77ad2b522d3e0769"
+  digest = "1:381ccafa5e013a0e3f9b54604ae522a73b9533a375a6a714b483c634d5e927ab"
   name = "go.opencensus.io"
   packages = [
     ".",
@@ -232,6 +235,8 @@
     "internal",
     "internal/tagencoding",
     "plugin/ocgrpc",
+    "plugin/ochttp",
+    "plugin/ochttp/propagation/b3",
     "stats",
     "stats/internal",
     "stats/view",
@@ -318,15 +323,20 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:25fdda9aa7db0186af23bea6b32e42bde8d6dc7ee137cfecbff4d4660673ed2b"
+  digest = "1:821c3dd8e16efe376eb830514fd08ac50775dbdaa88fb5dd3150d8245dc2f02e"
   name = "google.golang.org/api"
   packages = [
+    "gensupport",
     "googleapi",
     "googleapi/internal/uritemplates",
+    "googleapi/transport",
     "internal",
     "iterator",
     "option",
+    "storage/v1",
     "transport/grpc",
+    "transport/http",
+    "transport/http/internal/propagation",
   ]
   pruneopts = "UT"
   revision = "faade3cbb06a30202f2da53a8a5e3c4afe60b0c2"
@@ -354,11 +364,12 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:369e5e512607d450093af3df58bea9eaefcda463063a128975205127151b193d"
+  digest = "1:6a72799a4d7fdbe6f1e34a09e0df8549fce67eadeee5379e8d8a01502449c996"
   name = "google.golang.org/genproto"
   packages = [
     "googleapis/api/annotations",
     "googleapis/datastore/v1",
+    "googleapis/iam/v1",
     "googleapis/rpc/code",
     "googleapis/rpc/status",
     "googleapis/type/latlng",
@@ -414,6 +425,8 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "cloud.google.com/go/datastore",
+    "cloud.google.com/go/storage",
     "github.com/acoshift/configfile",
     "github.com/acoshift/csrf",
     "github.com/acoshift/header",
@@ -429,6 +442,8 @@
     "github.com/moonrhythm/session/store/goredis",
     "golang.org/x/oauth2",
     "golang.org/x/oauth2/facebook",
+    "golang.org/x/oauth2/google",
+    "google.golang.org/api/option",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
