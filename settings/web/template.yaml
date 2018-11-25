@@ -8,10 +8,13 @@ preload:
   - app/global.script.tmpl
 list:
   index :
+    - _layout/app.tmpl
     - app/index.tmpl
   app/signin:
+    - _layout/app.tmpl
     - app/signin.tmpl
   app/post.read:
+    - _layout/app.tmpl
     - app/post-read.tmpl
   notfound:
     - error.tmpl
