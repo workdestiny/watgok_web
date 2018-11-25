@@ -17,4 +17,5 @@ list:
     - _layout/app.tmpl
     - app/post-read.tmpl
   notfound:
+    - _layout/app.tmpl
     - error.tmpl
