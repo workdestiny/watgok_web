@@ -1,38 +1,32 @@
 package app
 
 import (
-	"github.com/moonrhythm/hime"
+	"context"
+
 	"github.com/moonrhythm/session"
 )
 
 var (
 	// SessionName is sess
-	SessionName = "sess"
-	// SessionUserKey is key in session
-	SessionUserKey = "userID"
+	SessionName = "sess_watgok"
 )
 
-func getSession(ctx *hime.Context) *session.Session {
+func getSession(ctx context.Context) *session.Session {
 	s, err := session.Get(ctx, SessionName)
 	must(err)
 	return s
 }
 
-func setSession(ctx *hime.Context, userID string) error {
-	s, err := session.Get(ctx, SessionName)
-	if err != nil {
-		return err
-	}
-	s.Set(SessionUserKey, userID)
-	return err
+func setSession(ctx context.Context, userID string) {
+	s := getSession(ctx)
+	s.Set("userid", userID)
 }
 
-func removeSession(ctx *hime.Context) error {
-	s, err := session.Get(ctx, SessionName)
-	if err != nil {
-		return err
-	}
-	s.Del(SessionUserKey)
-	return nil
+func removeSession(ctx context.Context) {
+	s := getSession(ctx)
+	s.Del("userid")
+}
 
+func getUserID(ctx context.Context) string {
+	return getSession(ctx).GetString("userid")
 }
