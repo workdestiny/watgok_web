@@ -25,7 +25,6 @@ import (
 )
 
 func main() {
-
 	configValue := configfile.NewYAMLReader("config/application.yaml")
 
 	loc, _ := time.LoadLocation("Asia/Bangkok")
@@ -90,7 +89,7 @@ func main() {
 		CSRFConfig: csrf.Config{
 			Origins: []string{
 				configValue.String("domain"),
-				"watgok.local:8080",
+				"watgok.local:8000",
 			},
 			IgnoreProto: true,
 		},
@@ -102,7 +101,6 @@ func main() {
 			Name:    configValue.String("bucket_name"),
 		},
 	}
-
 	appHime.Template().
 		Funcs(appFactory.TemplateFuncs()).
 		ParseConfigFile("settings/web/template.yaml")
@@ -123,6 +121,7 @@ func main() {
 
 	log.Println("Web Running!")
 
+	appHime.Address(":8000")
 	err = appHime.ListenAndServe()
 	if err != nil {
 		log.Fatal(err)

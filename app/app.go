@@ -93,6 +93,8 @@ func (app *App) Handler() http.Handler {
 		methodFilter,
 		csrf.New(app.CSRFConfig),
 		session.Middleware(app.SessionConfig),
+		getCookie,
+		fetchUser(db),
 		panicRecovery,
 	)(mux)
 }

@@ -63,6 +63,14 @@
   version = "v0.4.1"
 
 [[projects]]
+  digest = "1:bcdafbb21a9eab51dcdb6639828d3dc6b7d7bbcdde112b3171a668b2a0c0ef67"
+  name = "github.com/acoshift/pgsql"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "1e25e43744eac901fd77f2a1303154af44d3c22b"
+  version = "v0.2.7"
+
+[[projects]]
   branch = "master"
   digest = "1:6b77bb930973d1528ad423167a400ded047b17db112f78c2f6a0bc6209a9f2ef"
   name = "github.com/acoshift/probehandler"
@@ -416,6 +424,7 @@
     "github.com/acoshift/header",
     "github.com/acoshift/httprouter",
     "github.com/acoshift/middleware",
+    "github.com/acoshift/pgsql",
     "github.com/acoshift/probehandler",
     "github.com/acoshift/webstatic",
     "github.com/go-redis/redis",

@@ -1,14 +1,17 @@
 package app
 
 import (
+	"database/sql"
 	"encoding/json"
 	"image"
 	"log"
 	"net/http"
 
+	"github.com/acoshift/pgsql"
 	"github.com/moonrhythm/hime"
 	"github.com/workdestiny/watgok_web/config"
 	"github.com/workdestiny/watgok_web/entity"
+	"github.com/workdestiny/watgok_web/repository"
 	"github.com/workdestiny/watgok_web/service"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/facebook"
@@ -58,16 +61,47 @@ func signInFacebookCallbackGetHandler(ctx *hime.Context) error {
 		return err
 	}
 
-	resp, err = http.Get(facebookData.Picture.Data.URL)
-	if err != nil {
-		return ctx.RedirectTo("signin")
+	u, err := repository.GetUserByFBID(db, facebookData.ID)
+	log.Println(err)
+	if err == sql.ErrNoRows {
+		//create
+		resp, err = http.Get(facebookData.Picture.Data.URL)
+		if err != nil {
+			return ctx.RedirectTo("index")
+		}
+		defer resp.Body.Close()
+
+		image, _, err := image.Decode(resp.Body)
+		if err != nil {
+			return err
+		}
+
+		displayImage := service.ResizeDisplay(image)
+		path := service.GenerateDisplayName(facebookData.ID)
+		upload(ctx, displayImage, path)
+		//url image display
+		url := generateDownloadURL(path)
+
+		err = pgsql.RunInTx(db, nil, func(tx *sql.Tx) error {
+			//insert
+			id, err := repository.CreateUser(db, facebookData.Name, url, facebookData.ID, entity.RoleUser)
+			if err != nil {
+				return err
+			}
+			log.Println("123123123123123123123")
+			//signin
+			setSession(ctx, id)
+			return nil
+		})
+		if err != nil {
+			return err
+		}
+
+		return ctx.RedirectTo("index")
 	}
-	defer resp.Body.Close()
-	image, _, err := image.Decode(resp.Body)
-
-	displayImage := service.ResizeDisplay(image)
-	path := service.GenerateDisplayName(facebookData.ID)
-	upload(ctx, displayImage, path)
-
-	return nil
+	must(err)
+	log.Println(u.ID)
+	//signin
+	setSession(ctx, u.ID)
+	return ctx.RedirectTo("index")
 }
