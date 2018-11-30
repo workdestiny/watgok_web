@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"image"
-	"log"
 	"net/http"
 
 	"github.com/acoshift/pgsql"
@@ -18,9 +17,6 @@ import (
 )
 
 func signinGetHandle(ctx *hime.Context) error {
-
-	log.Println("aloha!!!")
-
 	return ctx.View("app/signin", page(ctx))
 }
 
@@ -62,7 +58,6 @@ func signInFacebookCallbackGetHandler(ctx *hime.Context) error {
 	}
 
 	u, err := repository.GetUserByFBID(db, facebookData.ID)
-	log.Println(err)
 	if err == sql.ErrNoRows {
 		//create
 		resp, err = http.Get(facebookData.Picture.Data.URL)
@@ -88,7 +83,7 @@ func signInFacebookCallbackGetHandler(ctx *hime.Context) error {
 			if err != nil {
 				return err
 			}
-			log.Println("123123123123123123123")
+
 			//signin
 			setSession(ctx, id)
 			return nil
@@ -100,7 +95,6 @@ func signInFacebookCallbackGetHandler(ctx *hime.Context) error {
 		return ctx.RedirectTo("index")
 	}
 	must(err)
-	log.Println(u.ID)
 	//signin
 	setSession(ctx, u.ID)
 	return ctx.RedirectTo("index")

@@ -3,7 +3,6 @@ package app
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"net"
 	"net/http"
 	"strings"
@@ -87,7 +86,6 @@ func getCookie(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 		userID := getUserID(ctx)
-		log.Println("WORK", userID)
 		nctx := WithMyID(ctx, userID)
 		h.ServeHTTP(w, r.WithContext(nctx))
 	})
