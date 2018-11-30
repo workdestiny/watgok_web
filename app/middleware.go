@@ -1,13 +1,18 @@
 package app
 
 import (
+	"database/sql"
 	"fmt"
+	"log"
 	"net"
 	"net/http"
 	"strings"
 	"time"
 
 	"github.com/acoshift/header"
+	"github.com/acoshift/middleware"
+	"github.com/workdestiny/watgok_web/entity"
+	"github.com/workdestiny/watgok_web/repository"
 )
 
 // DefaultCacheControl sets default cache-control header
@@ -76,4 +81,34 @@ func methodFilter(h http.Handler) http.Handler {
 			http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		}
 	})
+}
+
+func getCookie(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+		userID := getUserID(ctx)
+		log.Println("WORK", userID)
+		nctx := WithMyID(ctx, userID)
+		h.ServeHTTP(w, r.WithContext(nctx))
+	})
+}
+
+func fetchUser(db *sql.DB) middleware.Middleware {
+	return func(h http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			rCtx := r.Context()
+			u := &entity.UserModel{}
+			id := GetMyID(rCtx)
+			if id != "" {
+				u, _ = repository.GetUser(db, id)
+				if u.ID == "" {
+					removeSession(r.Context())
+				}
+			}
+
+			ctx := WithUser(rCtx, u)
+			ctx = WithUserRole(ctx, entity.Role(u.Role))
+			h.ServeHTTP(w, r.WithContext(ctx))
+		})
+	}
 }
