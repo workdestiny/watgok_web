@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"fmt"
 	"image"
 
 	"github.com/workdestiny/watgok_web/service"
@@ -17,4 +18,8 @@ func upload(ctx context.Context, m image.Image, filename string) error {
 		return err
 	}
 	return nil
+}
+
+func generateDownloadURL(filename string) string {
+	return fmt.Sprintf("https://storage.googleapis.com/%s/%s", bucket.Name, filename)
 }
