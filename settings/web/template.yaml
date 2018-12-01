@@ -9,6 +9,7 @@ preload:
 list:
   index :
     - _layout/app.tmpl
+    - _components/post-item.tmpl
     - app/index.tmpl
   app/signin:
     - _layout/app.tmpl
