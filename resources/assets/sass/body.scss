@@ -1,0 +1,127 @@
+
+.content {
+  display: flex;
+  flex-flow: row wrap;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.content .card {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: calc(25% - 20px);
+}
+
+.content .card .card-header {
+  display: flex;
+  overflow: hidden;
+  padding: 10px 10px 10px 0;
+}
+
+.content .card .card-header .profile {
+  flex-grow: 0;
+}
+
+.content .card .card-header .profile .img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: url('https://images.unsplash.com/photo-1463171379579-3fdfb86d6285?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D 750w');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content .card .card-header .details {
+  margin-left: 5px;
+  width: 100%;
+  align-self: center;
+}
+
+.content .card .card-header .name {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: #000;
+  max-width: calc(100% - 50px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.content .card .card-header .times {
+  display: block;
+  width: 100%;
+  max-width: calc(100% - 50px);
+  margin-top: 5px;
+  font-size: 11px;
+  color: #7e7e7e;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.content .card .content-body {
+  flex-grow: 1;
+}
+
+.content .card .content-body .image {
+  height: 300px;
+  background: url('https://images.unsplash.com/photo-1463171379579-3fdfb86d6285?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D 750w');
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.content .card .content-body {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+}
+.content .card .content-body:hover .overlay {
+  bottom: 0;
+}
+.content .card .content-body .overlay {
+  position: absolute;
+  bottom: -47px;
+  padding: 10px;
+  box-sizing: border-box;
+  flex-flow: column wrap;
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+  transition: 0.2s ease-out;
+  user-select: none;
+}
+
+.content .card .content-body .overlay .title {
+  flex-grow: 1;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.content .card .content-body .overlay .description {
+  flex-grow: 1;
+  font-size: 14px;
+  margin-top: 5px;
+}
+@media screen and (max-width: 1393px) {
+  .content .card {
+    width: calc(33% - 20px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content .card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 578px) {
+  .content .card {
+    width: calc(100% - 20px);
+  }
+}
