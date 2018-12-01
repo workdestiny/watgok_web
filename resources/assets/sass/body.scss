@@ -28,7 +28,7 @@
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  background: url('https://images.unsplash.com/photo-1463171379579-3fdfb86d6285?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D 750w');
+  background: url('https://images.unsplash.com/photo-1501013272247-a608485997d9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=04a4953f67411b0ea3cb46438bd6c9eb&auto=format&fit=crop&w=750&q=80 750w');
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -68,9 +68,10 @@
 }
 
 .content .card .content-body .image {
-  height: 300px;
-  background: url('https://images.unsplash.com/photo-1463171379579-3fdfb86d6285?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D 750w');
-  background-position: 50% 50%;
+  min-height: 300px;
+  max-height: 300px;
+  background: url('https://images.unsplash.com/photo-1513415564515-763d91423bdd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3365eadf83094db58989ac5454d8cb78&auto=format&fit=crop&w=375&q=80 375w');
+  background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
