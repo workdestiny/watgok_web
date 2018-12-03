@@ -83,6 +83,19 @@
   padding: 0;
   cursor: pointer;
 }
+
+.content .card .text-body {
+  padding: 15px;
+}
+
+.content .card .text-body .title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.content .card .text-body .description {
+  font-size: 14px;
+}
+
 .content .card .content-body:hover .overlay {
   bottom: 0;
 }
