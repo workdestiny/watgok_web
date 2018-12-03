@@ -44,7 +44,7 @@ body {
 .content .post .post-header {
   display: flex;
   overflow: hidden;
-  padding: 10px;
+  padding: 10px 10px 10px 20px;
 }
 
 .content .post .post-header .profile {
@@ -63,7 +63,7 @@ body {
 }
 
 .content .post .post-header .details {
-  margin-left: 5px;
+  margin-left: 10px;
   width: 100%;
   align-self: center;
 }
@@ -93,16 +93,14 @@ body {
 
 .content .post .content-body {
   flex-grow: 1;
+  max-height: 200px;
 }
 
 .content .post .content-body .image {
   min-height: 200px;
-  max-height: 200px;
-  background: url('https://storage.googleapis.com/watgok_bucket/banner.jpg');
-  background-position: 50%;
   border-radius: 5px 5px 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: no-repeat center center fixed;
+
   overflow: hidden;
 }
 .content .post .content-body {
@@ -113,7 +111,8 @@ body {
 }
 
 .content .post .text-body {
-  padding: 15px;
+  min-height: 160px;
+  padding: 10px 15px 0 15px;
 }
 
 .content .post .text-body .title {
