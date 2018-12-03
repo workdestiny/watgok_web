@@ -10,11 +10,11 @@
 </head>
 <body>
     <script src="{{static "/js/app.js"}}"></script>
-
+<div class="bg">
     {{template "body" .}}
     {{template "global.script" .}}
     {{block "main.script" .}}{{end}}
-
+</div>
 </body>
 </html>
 {{end}}

@@ -1,0 +1,12 @@
+.navbar {
+  height: 42px;
+  background: #d32f2f !important;
+  .navbar-brand:hover {
+    color: #fdd835;
+  }
+  .navbar-brand {
+    font-size: 22px;
+    color: #fdd835;
+    text-shadow: 2px 2px 10px #000000;
+  }
+}
