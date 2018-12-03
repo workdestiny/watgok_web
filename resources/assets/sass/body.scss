@@ -1,12 +1,20 @@
+body {
+  display: block;
+  height: 100%;
+}
 .bg {
-  height: 1500px;
-  background-image: url('https://storage.googleapis.com/watgok_bucket/bg-cover.jpg');
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  background: url('https://storage.googleapis.com/watgok_bucket/bg-cover.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 .container-fluid {
+  position: relative;
   padding: 0;
+  max-width: 1920px;
 }
 .banner {
   position: relative;
@@ -23,27 +31,30 @@
   overflow: hidden;
 }
 
-.content .card {
+.content .post {
   display: flex;
   flex-direction: column;
   margin: 10px;
-  width: calc(25% - 20px);
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.75);
+  width: calc(20% - 20px);
 }
 
-.content .card .card-header {
+.content .post .post-header {
   display: flex;
   overflow: hidden;
-  padding: 10px 10px 10px 0;
+  padding: 10px;
 }
 
-.content .card .card-header .profile {
+.content .post .post-header .profile {
   flex-grow: 0;
 }
 
-.content .card .card-header .profile .img {
+.content .post .post-header .profile .img {
   display: block;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
   background: url('https://images.unsplash.com/photo-1501013272247-a608485997d9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=04a4953f67411b0ea3cb46438bd6c9eb&auto=format&fit=crop&w=750&q=80 750w');
   background-position: 50% 50%;
@@ -51,13 +62,13 @@
   background-size: cover;
 }
 
-.content .card .card-header .details {
+.content .post .post-header .details {
   margin-left: 5px;
   width: 100%;
   align-self: center;
 }
 
-.content .card .card-header .name {
+.content .post .post-header .name {
   display: block;
   width: 100%;
   text-decoration: none;
@@ -68,7 +79,7 @@
   text-overflow: ellipsis;
 }
 
-.content .card .card-header .times {
+.content .post .post-header .times {
   display: block;
   width: 100%;
   max-width: calc(100% - 50px);
@@ -80,43 +91,43 @@
   text-overflow: ellipsis;
 }
 
-.content .card .content-body {
+.content .post .content-body {
   flex-grow: 1;
 }
 
-.content .card .content-body .image {
-  min-height: 300px;
-  max-height: 300px;
-  background: url('https://images.unsplash.com/photo-1513415564515-763d91423bdd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3365eadf83094db58989ac5454d8cb78&auto=format&fit=crop&w=375&q=80 375w');
+.content .post .content-body .image {
+  min-height: 200px;
+  max-height: 200px;
+  background: url('https://storage.googleapis.com/watgok_bucket/banner.jpg');
   background-position: 50%;
+  border-radius: 5px 5px 0 0;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
-  border-radius: 3px;
 }
-.content .card .content-body {
+.content .post .content-body {
   position: relative;
   overflow: hidden;
   padding: 0;
   cursor: pointer;
 }
 
-.content .card .text-body {
+.content .post .text-body {
   padding: 15px;
 }
 
-.content .card .text-body .title {
+.content .post .text-body .title {
   font-size: 20px;
   font-weight: bold;
 }
-.content .card .text-body .description {
+.content .post .text-body .description {
   font-size: 14px;
 }
 
-.content .card .content-body:hover .overlay {
+.content .post .content-body:hover .overlay {
   bottom: 0;
 }
-.content .card .content-body .overlay {
+.content .post .content-body .overlay {
   position: absolute;
   bottom: -47px;
   padding: 10px;
@@ -128,31 +139,36 @@
   user-select: none;
 }
 
-.content .card .content-body .overlay .title {
+.content .post .content-body .overlay .title {
   flex-grow: 1;
   font-size: 16px;
   font-weight: bold;
   text-decoration: none;
 }
-.content .card .content-body .overlay .description {
+.content .post .content-body .overlay .description {
   flex-grow: 1;
   font-size: 14px;
   margin-top: 5px;
 }
 @media screen and (max-width: 1393px) {
-  .content .card {
+  .content .post {
+    width: calc(25% - 20px);
+  }
+}
+@media screen and (max-width: 1100px) {
+  .content .post {
     width: calc(33% - 20px);
   }
 }
 
 @media screen and (max-width: 768px) {
-  .content .card {
+  .content .post {
     width: calc(50% - 20px);
   }
 }
 
 @media screen and (max-width: 578px) {
-  .content .card {
+  .content .post {
     width: calc(100% - 20px);
   }
 }
