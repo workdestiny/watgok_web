@@ -80,7 +80,7 @@ func (app *App) Handler() http.Handler {
 
 	m.Get(app.Hime.Route("signin"), hime.Handler(signInFacebookGetHandler))
 	m.Get(app.Hime.Route("signin.fb.callback"), hime.Handler(signInFacebookCallbackGetHandler))
-	m.Get(app.Hime.Route("postread"), hime.Handler(postReadGetHandler))
+	m.Get(app.Hime.Route("post.read"), hime.Handler(postReadGetHandler))
 	m.Get(app.Hime.Route("index"), hime.Handler(indexGetHandler))
 
 	// add m to mux

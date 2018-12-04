@@ -5,4 +5,4 @@ routes:
   # signin
   signin: /signin
   signin.fb.callback: /signin/fb/callback
-  postread: /postread
+  post.read: /postread
