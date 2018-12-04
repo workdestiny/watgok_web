@@ -10,3 +10,27 @@
     text-shadow: 2px 2px 10px #000000;
   }
 }
+
+.navbar-profile {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  .profile {
+    flex-grow: 0;
+    align-items: center;
+    img {
+      border-radius: 100%;
+    }
+  }
+  .name {
+    align-items:center;
+     a {
+       font-size: 16px;
+       font-weight: bold;
+       color: #000000;
+     }
+     a:hover {
+      text-decoration: none;
+     }
+  }
+}

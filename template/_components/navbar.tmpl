@@ -28,9 +28,20 @@
         </li> -->
       </ul>
     </div>
+    {{if eq .User.ID ""}}
         <form>
           <button class="btn loginBtn loginBtn--facebook my-2 my-sm-0 login" type="submit">Login</button>
         </form>
+    {{else}}
+        <div class="navbar-profile">
+          <div class="profile">
+            <img class="profile" width="30" height="30" src="{{.User.Display}}" alt="">
+          </div>
+          <div class="name">
+            <a href="">{{.User.Name}}</a>
+          </div>
+        </div>
+    {{end}}
   </nav>
 {{end}}
 {{define "main.script"}}

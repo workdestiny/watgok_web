@@ -20,6 +20,7 @@ func page(ctx *hime.Context) map[string]interface{} {
 	x["URL"] = "https://" + getHost(r) + r.RequestURI
 	x["Flash"] = sess.Flash()
 	x["Now"] = time.Now()
+	x["User"] = getUser(ctx)
 
 	return x
 }
